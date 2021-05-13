@@ -31,10 +31,15 @@ def main():
 
     output = restoration_video_inference(model, args.input_dir,
                                          args.window_size)
+    import os
+    for _,_,files in os.walk('cons2'):
+        z=files
+    z.sort()
+    start = int(z[0].split('.')[0])
     for i in range(0, output.size(1)):
         output_i = output[:, i, :, :, :]
         output_i = tensor2img(output_i)
-        save_path_i = f'{args.output_dir}/{i:08d}.png'
+        save_path_i = f'{args.output_dir}/{i+start:08d}.jpg'
 
         mmcv.imwrite(output_i, save_path_i)
 
