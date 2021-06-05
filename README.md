@@ -69,12 +69,15 @@ Supported algorithms:
 - [x] [EDSR](configs/restorers/edsr/README.md) (CVPR'2017)
 - [x] [EDVR](configs/restorers/edvr/README.md) (CVPR'2019)
 - [x] [ESRGAN](configs/restorers/esrgan/README.md) (ECCV'2018)
+- [x] [GLEAN](configs/restorers/glean/README.md) (CVPR'2021)
 - [x] [IconVSR](configs/restorers/iconvsr/README.md) (CVPR'2021)
 - [x] [LIIF](configs/restorers/liif/README.md) (CVPR'2021)
 - [x] [RDN](configs/restorers/rdn/README.md) (CVPR'2018)
 - [x] [SRCNN](configs/restorers/srcnn/README.md) (TPAMI'2015)
 - [x] [SRResNet&SRGAN](configs/restorers/srresnet_srgan/README.md) (CVPR'2016)
+- [x] [TDAN](configs/restorers/tdan/README.md) (CVPR'2020)
 - [x] [TOF](configs/restorers/tof/README.md) (IJCV'2019)
+- [x] [TTSR](configs/restorers/ttsr/README.md) (CVPR'2020)
 
 </details>
 
@@ -95,7 +98,7 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 ## Changelog
 
-v0.7.0 was released in 2021-4-30.
+v0.8.0 was released in 2021-5-31.
 
 Note that **MMSR** has been merged into this repo, as a part of MMEditing.
 With elaborate designs of the new framework and careful implementations,

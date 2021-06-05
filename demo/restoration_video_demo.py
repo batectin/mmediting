@@ -14,6 +14,15 @@ def parse_args():
     parser.add_argument('input_dir', help='directory of the input video')
     parser.add_argument('output_dir', help='directory of the output video')
     parser.add_argument(
+        '--start_idx',
+        type=int,
+        default=0,
+        help='index corresponds to the first frame of the sequence')
+    parser.add_argument(
+        '--filename_tmpl',
+        default='{:08d}.png',
+        help='template of the file names')
+    parser.add_argument(
         '--window_size',
         type=int,
         default=0,
@@ -30,7 +39,8 @@ def main():
         args.config, args.checkpoint, device=torch.device('cuda', args.device))
 
     output = restoration_video_inference(model, args.input_dir,
-                                         args.window_size)
+                                         args.window_size, args.start_idx,
+                                         args.filename_tmpl)
     import os
     for _,_,files in os.walk('cons2'):
         z=files
