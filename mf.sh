@@ -1,7 +1,9 @@
 #!/bin/bash
-for k in {1..200}
+for ((k=1; k<=$1; k++));
 do
-	clear && clear;
+    if (($k % 5 == 0)); then
+        clear && clear;
+    fi;
 	echo $k;
 	i=0;
 	for f in cons/*;
@@ -10,10 +12,11 @@ do
 		mv $f ./cons2;
 		i=$((i+1));
 		# echo $i;
-		if [ $i -gt 99 ]; then
+		if [ $i -gt $2 ]; then
 			break;
 		fi;
 	done
-	python "demo/restoration_video_demo.py" "./configs/restorers/iconvsr/iconvsr_reds4.py" "./iconvsr_reds4_20210413-9e09d621.pth" ./cons2/ ./output;
-	mv ./cons2/* ./cons3;
+	python "demo/restoration_video_demo.py" "./configs/restorers/iconvsr/iconvsr_vimeo90k_bd.py" \
+        "./iconvsr_vimeo90k_bd_20210414-5f38cb34.pth" ./cons2/ ./output;
+	#mv ./cons2/* ./cons3;
 done

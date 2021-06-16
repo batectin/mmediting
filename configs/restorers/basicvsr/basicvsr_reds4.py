@@ -78,7 +78,7 @@ data = dict(
             gt_folder='data/REDS/train_sharp',
             num_input_frames=15,
             pipeline=train_pipeline,
-            scale=4,
+            scale=2,
             val_partition='REDS4',
             test_mode=False)),
     # val
@@ -88,7 +88,7 @@ data = dict(
         gt_folder='data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
-        scale=4,
+        scale=2,
         val_partition='REDS4',
         test_mode=True),
     # test
@@ -98,7 +98,7 @@ data = dict(
         gt_folder='data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
-        scale=4,
+        scale=2,
         val_partition='REDS4',
         test_mode=True),
 )
