@@ -1,4 +1,3 @@
-# yapf: disable
 from .encoder_decoders import (VGG16, ContextualAttentionNeck, DeepFillDecoder,
                                DeepFillEncoder, DeepFillEncoderDecoder,
                                DepthwiseIndexBlock, FBADecoder,
@@ -10,9 +9,8 @@ from .encoder_decoders import (VGG16, ContextualAttentionNeck, DeepFillDecoder,
                                ResGCADecoder, ResGCAEncoder, ResNetDec,
                                ResNetEnc, ResShortcutDec, ResShortcutEnc,
                                SimpleEncoderDecoder)
-# yapf: enable
 from .generation_backbones import ResnetGenerator, UnetGenerator
-from .sr_backbones import (EDSR, RDN, SRCNN, BasicVSRNet, EDVRNet,
+from .sr_backbones import (EDSR, RDN, SRCNN, BasicVSRNet, DICNet, EDVRNet,
                            GLEANStyleGANv2, IconVSR, MSRResNet, RRDBNet,
                            TDANNet, TOFlow, TTSRNet)
 
@@ -22,7 +20,7 @@ __all__ = [
     'PConvEncoderDecoder', 'PConvEncoder', 'PConvDecoder', 'ResNetEnc',
     'ResNetDec', 'ResShortcutEnc', 'ResShortcutDec', 'RRDBNet',
     'DeepFillEncoder', 'HolisticIndexBlock', 'DepthwiseIndexBlock',
-    'ContextualAttentionNeck', 'DeepFillDecoder', 'EDSR', 'RDN',
+    'ContextualAttentionNeck', 'DeepFillDecoder', 'EDSR', 'RDN', 'DICNet',
     'DeepFillEncoderDecoder', 'EDVRNet', 'IndexedUpsample', 'IndexNetEncoder',
     'IndexNetDecoder', 'TOFlow', 'ResGCAEncoder', 'ResGCADecoder', 'SRCNN',
     'UnetGenerator', 'ResnetGenerator', 'FBAResnetDilated', 'FBADecoder',

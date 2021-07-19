@@ -50,7 +50,6 @@ def main():
         output_i = output[:, i, :, :, :]
         output_i = tensor2img(output_i)
         save_path_i = f'{args.output_dir}/{i+start:08d}.jpg'
-
         mmcv.imwrite(output_i, save_path_i)
 
 
