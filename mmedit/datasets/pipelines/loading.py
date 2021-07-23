@@ -132,16 +132,15 @@ class LoadImageFromFileList(LoadImageFromFile):
         if not isinstance(filepaths, list):
             raise TypeError(
                 f'filepath should be list, but got {type(filepaths)}')
-            #filepaths = [filepaths]
 
         filepaths = [str(v) for v in filepaths]
-        filepaths=[]
-        import os
-        for _,_,files in os.walk('cons2'):
-            for f in files:
-                filepaths.append('./cons2/{}'.format(f))
-        filepaths.sort()
-        print(filepaths[:10])
+        #filepaths=[]
+        #import os
+        #for _,_,files in os.walk('cons2'):
+        #    for f in files:
+        #        filepaths.append('./cons2/{}'.format(f))
+        #filepaths.sort()
+        #print(filepaths[:10])
 
         imgs = []
         shapes = []
