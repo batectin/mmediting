@@ -7,8 +7,7 @@ model = dict(
         type='BasicVSRNet',
         mid_channels=64,
         num_blocks=30,
-        spynet_pretrained='https://download.openmmlab.com/mmediting/restorers/'
-        'basicvsr/spynet_20210409-c6c1bd09.pth'),
+        spynet_pretrained='spynet_20210409-c6c1bd09.pth'),
     pixel_loss=dict(type='CharbonnierLoss', loss_weight=1.0, reduction='mean'))
 # model training and testing settings
 train_cfg = dict(fix_iter=5000)
@@ -86,7 +85,7 @@ data = dict(
         times=1000,
         dataset=dict(
             type=train_dataset_type,
-            lq_folder='data/REDS/train_sharp_bicubic/X4',
+            lq_folder='data/REDS/train_blur_bicubic/X4',
             gt_folder='data/REDS/train_sharp',
             num_input_frames=15,
             pipeline=train_pipeline,
@@ -96,7 +95,7 @@ data = dict(
     # val
     val=dict(
         type=val_dataset_type,
-        lq_folder='data/REDS/train_sharp_bicubic/X4',
+        lq_folder='data/REDS/train_blur_bicubic/X4',
         gt_folder='data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
@@ -106,7 +105,7 @@ data = dict(
     # test
     test=dict(
         type=val_dataset_type,
-        lq_folder='data/REDS/train_sharp_bicubic/X4',
+        lq_folder='data/REDS/train_blur_bicubic/X4',
         gt_folder='data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
