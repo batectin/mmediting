@@ -146,7 +146,7 @@ visual_config = None
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = f'./work_dirs/{exp_name}'
-load_from = None
+load_from = "./work_dirs/basicvsr_reds4/latest.pth"
 resume_from = None
 workflow = [('train', 1)]
 find_unused_parameters = True

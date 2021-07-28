@@ -140,7 +140,7 @@ class LoadImageFromFileList(LoadImageFromFile):
         #    for f in files:
         #        filepaths.append('./cons2/{}'.format(f))
         #filepaths.sort()
-        #print(filepaths[:10])
+        # print(len(filepaths), '------')
 
         imgs = []
         shapes = []
