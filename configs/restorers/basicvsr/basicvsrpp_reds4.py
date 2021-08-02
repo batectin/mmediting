@@ -86,9 +86,9 @@ data = dict(
         times=1000,
         dataset=dict(
             type=train_dataset_type,
-            lq_folder='data/REDS/train_blur_bicubic.lmdb',
-            gt_folder='data/REDS/train_sharp.lmdb',
-            num_input_frames=15,
+            lq_folder='/home/ttra0073/za99/ttt/train_blur_bicubic/X4',
+            gt_folder='/home/ttra0073/za99/ttt/train_sharp',
+            num_input_frames=10,
             pipeline=train_pipeline,
             scale=4,
             val_partition='REDS4',
@@ -96,8 +96,8 @@ data = dict(
     # val
     val=dict(
         type=val_dataset_type,
-        lq_folder='data/REDS/train_blur_bicubic.lmdb',
-        gt_folder='data/REDS/train_sharp.lmdb',
+        lq_folder='/home/ttra0073/za99/ttt/train_blur_bicubic/X4',
+        gt_folder='/home/ttra0073/za99/ttt/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
         scale=4,
@@ -106,8 +106,8 @@ data = dict(
     # test
     test=dict(
         type=val_dataset_type,
-        lq_folder='data/REDS/train_blur_bicubic.lmdb',
-        gt_folder='data/REDS/train_sharp.lmdb',
+        lq_folder='/home/ttra0073/za99/ttt/train_blur_bicubic/X4',
+        gt_folder='/home/ttra0073/za99/ttt/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
         scale=4,
@@ -132,9 +132,9 @@ lr_config = dict(
     restart_weights=[1],
     min_lr=1e-7)
 
-checkpoint_config = dict(interval=2500, save_optimizer=True, by_epoch=False)
+checkpoint_config = dict(interval=5000, save_optimizer=True, by_epoch=False)
 # remove gpu_collect=True in non distributed training
-evaluation = dict(interval=2500, save_image=False)
+evaluation = dict(interval=5000, save_image=False, gpu_collect=True)
 log_config = dict(
     interval=100,
     hooks=[
@@ -146,7 +146,7 @@ visual_config = None
 # runtime settings
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = f'../drive/MyDrive/work_dirs/{exp_name}'
+work_dir = f'/home/ttra0073/za99/ttt/workdir/{exp_name}'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
