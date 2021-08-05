@@ -7,8 +7,7 @@ model = dict(
         type='BasicVSRNet',
         mid_channels=64,
         num_blocks=30,
-        spynet_pretrained='https://download.openmmlab.com/mmediting/restorers/'
-        'basicvsr/spynet_20210409-c6c1bd09.pth'),
+        spynet_pretrained='spynet_20210409-c6c1bd09.pth'),
     pixel_loss=dict(type='CharbonnierLoss', loss_weight=1.0, reduction='mean'))
 # model training and testing settings
 train_cfg = dict(fix_iter=5000)
@@ -62,6 +61,18 @@ test_pipeline = [
         meta_keys=['lq_path', 'gt_path', 'key'])
 ]
 
+demo_pipeline = [
+    dict(type='GenerateSegmentIndices', interval_list=[1]),
+    dict(
+        type='LoadImageFromFileList',
+        io_backend='disk',
+        key='lq',
+        channel_order='rgb'),
+    dict(type='RescaleToZeroOne', keys=['lq']),
+    dict(type='FramesToTensor', keys=['lq']),
+    dict(type='Collect', keys=['lq'], meta_keys=['lq_path', 'key'])
+]
+
 data = dict(
     workers_per_gpu=6,
     train_dataloader=dict(samples_per_gpu=4, drop_last=True),  # 2 gpus
@@ -74,7 +85,7 @@ data = dict(
         times=1000,
         dataset=dict(
             type=train_dataset_type,
-            lq_folder='data/REDS/train_sharp_bicubic/X4',
+            lq_folder='data/REDS/train_blur_bicubic/X4',
             gt_folder='data/REDS/train_sharp',
             num_input_frames=15,
             pipeline=train_pipeline,
@@ -84,7 +95,7 @@ data = dict(
     # val
     val=dict(
         type=val_dataset_type,
-        lq_folder='data/REDS/train_sharp_bicubic/X4',
+        lq_folder='data/REDS/train_blur_bicubic/X4',
         gt_folder='data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
@@ -94,7 +105,7 @@ data = dict(
     # test
     test=dict(
         type=val_dataset_type,
-        lq_folder='data/REDS/train_sharp_bicubic/X4',
+        lq_folder='data/REDS/train_blur_bicubic/X4',
         gt_folder='data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
@@ -135,7 +146,7 @@ visual_config = None
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = f'./work_dirs/{exp_name}'
-load_from = None
+load_from = "./work_dirs/basicvsr_reds4/latest.pth"
 resume_from = None
 workflow = [('train', 1)]
 find_unused_parameters = True

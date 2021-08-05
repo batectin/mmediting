@@ -40,24 +40,25 @@ def restoration_video_inference(model, img_dir, window_size, start_idx,
     """
     device = next(model.parameters()).device  # model device
 
-    # pipeline
-    test_pipeline = [
-        dict(
-            type='GenerateSegmentIndices',
-            interval_list=[1],
-            start_idx=start_idx,
-            filename_tmpl=filename_tmpl),
-        dict(
-            type='LoadImageFromFileList',
-            io_backend='disk',
-            key='lq',
-            channel_order='rgb'),
-        dict(type='RescaleToZeroOne', keys=['lq']),
-        dict(type='FramesToTensor', keys=['lq']),
-        dict(type='Collect', keys=['lq'], meta_keys=['lq_path', 'key'])
-    ]
-
     # build the data pipeline
+    if model.cfg.get('demo_pipeline', None):
+        test_pipeline = model.cfg.demo_pipeline
+    elif model.cfg.get('test_pipeline', None):
+        test_pipeline = model.cfg.test_pipeline
+    else:
+        test_pipeline = model.cfg.val_pipeline
+
+    # the first element in the pipeline must be 'GenerateSegmentIndices'
+    if test_pipeline[0]['type'] != 'GenerateSegmentIndices':
+        raise TypeError('The first element in the pipeline must be '
+                        f'"GenerateSegmentIndices", but got '
+                        f'"{test_pipeline[0]["type"]}".')
+
+    # specify start_idx and filename_tmpl
+    test_pipeline[0]['start_idx'] = start_idx
+    test_pipeline[0]['filename_tmpl'] = filename_tmpl
+
+    # compose the pipeline
     test_pipeline = Compose(test_pipeline)
 
     # prepare data
@@ -77,7 +78,7 @@ def restoration_video_inference(model, img_dir, window_size, start_idx,
         if window_size > 0:  # sliding window framework
             data = pad_sequence(data, window_size)
             result = []
-            for i in range(0, data.size(1) - 2 * window_size):
+            for i in range(0, data.size(1) - 2 * (window_size // 2)):
                 data_i = data[:, i:i + window_size]
                 result.append(model(lq=data_i, test_mode=True)['output'])
             result = torch.stack(result, dim=1)

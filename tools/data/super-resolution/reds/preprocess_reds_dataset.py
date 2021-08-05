@@ -144,10 +144,19 @@ def generate_anno_file(root_path, file_name='meta_info_REDS_GT.txt'):
     print(f'Generate annotation files {file_name}...')
     txt_file = osp.join(root_path, file_name)
     mmcv.utils.mkdir_or_exist(osp.dirname(txt_file))
+
+    import os
+    root_path += '/train_sharp'
+    l = list(os.walk(root_path))
+    l.sort()
+    l[0][1].sort()
+
     with open(txt_file, 'w') as f:
-        for i in range(270):
-            for j in range(100):
-                f.write(f'{i:03d}/{j:08d}.png (720, 1280, 3)\n')
+        for i in l[0][1]:
+            imgs = l[int(i) + 1]
+            imgs[2].sort()
+            for j in imgs[2]:
+                f.write(f'{i}/{j} (720, 1280, 3)\n')
 
 
 def unzip(zip_path):
