@@ -75,8 +75,8 @@ demo_pipeline = [
 ]
 
 data = dict(
-    workers_per_gpu=6,
-    train_dataloader=dict(samples_per_gpu=4, drop_last=True),  # 2 gpus
+    workers_per_gpu=4,
+    train_dataloader=dict(samples_per_gpu=2, drop_last=True),  # 2 gpus
     val_dataloader=dict(samples_per_gpu=1),
     test_dataloader=dict(samples_per_gpu=1, workers_per_gpu=1),
 
@@ -86,8 +86,8 @@ data = dict(
         times=1000,
         dataset=dict(
             type=train_dataset_type,
-            lq_folder='/home/ttra0073/za99/ttt/train_blur_bicubic/X4',
-            gt_folder='/home/ttra0073/za99/ttt/train_sharp',
+            lq_folder='./data/REDS/train_blur_bicubic/X4',
+            gt_folder='./data/REDS/train_sharp',
             num_input_frames=10,
             pipeline=train_pipeline,
             scale=4,
@@ -96,8 +96,8 @@ data = dict(
     # val
     val=dict(
         type=val_dataset_type,
-        lq_folder='/home/ttra0073/za99/ttt/train_blur_bicubic/X4',
-        gt_folder='/home/ttra0073/za99/ttt/train_sharp',
+        lq_folder='./data/REDS/train_blur_bicubic/X4',
+        gt_folder='./data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
         scale=4,
@@ -106,8 +106,8 @@ data = dict(
     # test
     test=dict(
         type=val_dataset_type,
-        lq_folder='/home/ttra0073/za99/ttt/train_blur_bicubic/X4',
-        gt_folder='/home/ttra0073/za99/ttt/train_sharp',
+        lq_folder='./data/REDS/train_blur_bicubic/X4',
+        gt_folder='./data/REDS/train_sharp',
         num_input_frames=100,
         pipeline=test_pipeline,
         scale=4,
@@ -124,11 +124,11 @@ optimizers = dict(
         paramwise_cfg=dict(custom_keys={'spynet': dict(lr_mult=0.125)})))
 
 # learning policy
-total_iters = 100000
+total_iters = 300000
 lr_config = dict(
     policy='CosineRestart',
     by_epoch=False,
-    periods=[100000],
+    periods=[300000],
     restart_weights=[1],
     min_lr=1e-7)
 
@@ -146,7 +146,7 @@ visual_config = None
 # runtime settings
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = f'/home/ttra0073/za99/ttt/workdir/{exp_name}'
+work_dir = f'./work_dirs/{exp_name}'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
