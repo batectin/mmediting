@@ -8,8 +8,7 @@ model = dict(
         mid_channels=64,
         num_blocks=7,
         is_low_res_input=True,
-        spynet_pretrained='https://download.openmmlab.com/mmediting/restorers/'
-        'basicvsr/spynet_20210409-c6c1bd09.pth'),
+        spynet_pretrained='spynet_20210409-c6c1bd09.pth'),
     pixel_loss=dict(type='CharbonnierLoss', loss_weight=1.0, reduction='mean'))
 # model training and testing settings
 train_cfg = dict(fix_iter=5000)

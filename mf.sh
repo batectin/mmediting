@@ -16,9 +16,9 @@ do
 			break;
 		fi;
 	done
-	python "demo/restoration_video_demo.py" "./configs/restorers/basicvsr/basicvsr_reds4.py" \
-        "./iter_300000.pth" ./cons2/ ./output;
-#	python "demo/restoration_video_demo.py" "./configs/restorers/tdan/tdan_vimeo90k_bix4_ft_lr5e-5_400k.py" \
-#        "./tdan_vimeo90k_bix4_20210528-739979d9.pth" ./cons2/ ./output;
-	mv ./cons2/* ./cons3;
-done
+	python  "demo/restoration_video_demo.py" \
+             "./configs/restorers/basicvsr_plusplus/basicvsr_plusplus_c64n7_8x1_600k_reds4.py"  \
+             "./basicvsr_plusplus_c64n7_8x1_600k_reds4_20210217-db622b2f.pth" ./cons2/ ./output;
+     mv cons2/* cons3;
+done;
+
