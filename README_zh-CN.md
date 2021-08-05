@@ -66,6 +66,7 @@ MMEditing 是基于 PyTorch 的图像&视频编辑开源工具箱。是 [OpenMML
 <summary>超分辨率</summary>
 
 - [x] [BasicVSR](configs/restorers/basicvsr/README.md) (CVPR'2021)
+- [x] [BasicVSR++](configs/restorers/basicvsr_plusplus/README.md) (NTIRE'2021)
 - [x] [EDSR](configs/restorers/edsr/README.md) (CVPR'2017)
 - [x] [EDVR](configs/restorers/edvr/README.md) (CVPR'2019)
 - [x] [ESRGAN](configs/restorers/esrgan/README.md) (ECCV'2018)
@@ -137,6 +138,7 @@ MMEditing 是一款由不同学校和公司共同贡献的开源项目。我们�
 ## OpenMMLab 的其他项目
 
 - [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab 计算机视觉基础库
+- [MIM](https://github.com/open-mmlab/mim): OpenMMlab 项目、算法、模型的统一入口
 - [MMClassification](https://github.com/open-mmlab/mmclassification): 图像分类工具箱与测试基准
 - [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab 检测工具箱与测试基准
 - [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab 新一代通用3D目标检测平台

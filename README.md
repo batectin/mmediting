@@ -66,6 +66,7 @@ Supported algorithms:
 <summary>Super-Resolution</summary>
 
 - [x] [BasicVSR](configs/restorers/basicvsr/README.md) (CVPR'2021)
+- [x] [BasicVSR++](configs/restorers/basicvsr_plusplus/README.md) (NTIRE'2021)
 - [x] [EDSR](configs/restorers/edsr/README.md) (CVPR'2017)
 - [x] [EDVR](configs/restorers/edvr/README.md) (CVPR'2019)
 - [x] [ESRGAN](configs/restorers/esrgan/README.md) (ECCV'2018)
@@ -140,6 +141,7 @@ MMEditing is an open source project that is contributed by researchers and engin
 ## Projects in OpenMMLab
 
 - [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab foundational library for computer vision.
+- [MIM](https://github.com/open-mmlab/mim): MIM Installs OpenMMLab Packages.
 - [MMClassification](https://github.com/open-mmlab/mmclassification): OpenMMLab image classification toolbox and benchmark.
 - [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab detection toolbox and benchmark.
 - [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab's next-generation platform for general 3D object detection.
